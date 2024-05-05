@@ -1,0 +1,42 @@
+<script type="text/javascript">
+    function postJson() {
+    var url = "http://localhost:8080/coffees/" + document.getElementById("id").value;
+    var coffee ={};
+    coffee.id =  document.getElementById("id").value;
+    coffee.name = document.getElementById("name").value;
+    coffee.price =  document.getElementById("price").value;
+    var json = JSON.stringify(coffee);
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', url,true);
+    xhr.RequestHeader('Content-type', 'application/json');
+    xhr.send(json);
+
+    }
+</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update a coffee</title>
+    <!--
+    http://localhost:8080/update2.html
+    -->
+</head>
+<body>
+   <form >
+      <label for="id">Id</label>
+       <input type="text" id="id" name="id" value="">
+       <br/>
+       <label for="name">NAME</label>
+       <input type="text" id="name" name="name" value="">
+
+       <label for="price">Price</label>
+       <input type="text" id="price" name="price" value="">
+       <br/>
+       <!-- <input type="submit" value="Update a coffee"> -->
+   </form>
+   <button type="button" onclick="postJson();"> Update a c coffee</button>
+   <br/>
+<small></small><a href="/coffees">coffees</a>
+</body>
+</html>

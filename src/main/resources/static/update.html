@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update a coffee</title>
+    <!--
+    http://localhost:8080/update.html
+    -->
+</head>
+<body>
+   <form action="/coffees/update" method="post">
+      <label for="id">Id</label>
+       <input type="text" id="id" name="id" value="">
+       <br/>
+       <label for="name">NAME</label>
+       <input type="text" id="name" name="name" value="">
+
+       <label for="price">Price</label>
+       <input type="text" id="price" name="price" value="">
+       <br/>
+       <input type="submit" value="Update a coffee">
+   </form>
+   <br/>
+<small></small><a href="/coffees">coffees</a>
+</body>
+</html>

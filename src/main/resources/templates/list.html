@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div th:replace="fragments/header"/>
+
+<h1 th:text="${mydate}"></h1>
+
+<p th:text="( ${coffees.size()} > 6 ) ? ('много марок кофе') : ('мало марок кофе') "></p>
+
+<!--<small th:text="${coffees[2].name}"></small>-->
+
+<span th:if="${coffees.size()} > 3" th:text="|Много кофе|"></span>
+
+<p>Сколько у нас видов кофе: </p>
+<div th:switch="${coffees.size()}">
+    <span th:case="0">Нет кофе (</span>
+    <span th:case="1">Один</span>
+    <span th:case="2">Два</span>
+    <span th:case="3">Три</span>
+    <span th:case="*">Много</span>
+</div>
+
+<ul>
+    <li th:each="coffee : ${coffees}">
+        <span th:text="${coffee.name}"></span>-<span th:text="${coffee.price}"></span>
+    </li>
+</ul>
+
+<ul>
+    <li th:each="coffee : ${coffees}">
+        <span th:text="${coffee.name + ' - ' + coffee.price}"></span>
+
+        <span th:text="( ${coffee.price} > 3 ) ? ('дорого') : ('доступно')"></span>
+        <a th:href="@{/new/coffees/edit/{id}/{name}(id=${coffee.id},name=${coffee.name})}">Link</a>
+        <span th:if="${#strings.endsWith(coffee.name,'o')}" th:text="|ends with o|"></span>
+    </li>
+</ul>
+
+
+
+
+<div th:switch="${coffees}">
+
+
+
+
+    <h2 th:case="null">No coffees yet!</h2>
+    <div th:case="*">
+        <h2>Coffees</h2>
+        <table border="1">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="coffee : ${coffees}">
+                <td th:text="${coffee.id}"></td>
+                <td th:text="${coffee.name}"></td>
+                <td th:text="${coffee.price}"></td>
+                <td><a th:href="@{/new/coffees/edit/{id}(id=${coffee.id})}">Edit</a></td>
+                <td><a th:href="@{/new/coffees/delete/{id}(id=${coffee.id})}">Delete</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <hr/>
+    <p><a href="/new/coffees/add">Add a new coffee</a></p>
+
+    <form action="/coffees/search" method="get">
+        <input type="text" id="name" name="name"/>
+        <input type="submit" value="Search a Coffees"/>
+    </form>
+
+</div>
+<br/>
+size of coffees list is: [[${coffees.size()}]]
+
+<div th:replace="fragments/footer"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
